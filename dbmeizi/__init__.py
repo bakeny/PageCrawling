@@ -12,12 +12,12 @@ import bs4
 from bs4 import BeautifulSoup
 
 
-def getAllImageLink():
-    # if(pagesize == 0):
-    #     print "Size of Need downloaded picture page is zero!"
-    #     return
-    # for i in range(pagesize):
-        html = urllib2.urlopen('http://www.dbmeizi.com')
+def getAllImageLink(pagesize):
+    if(pagesize == 0):
+        print "Size of Need downloaded picture page is zero!"
+        return
+    for i in range(pagesize):
+        html = urllib2.urlopen('http://www.dbmeizi.com/?p='+str(i))
 
         print html
         soup = BeautifulSoup(html)
@@ -35,6 +35,6 @@ def getAllImageLink():
 
 
 if __name__ == '__main__':
-    getAllImageLink()
+    getAllImageLink(3)
 
 
