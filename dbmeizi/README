@@ -7,3 +7,18 @@ cd /d D:/python//beautifulsoup4-4.1.3
 setup.py build
 setup.py install
 5.在IDE下from bs4 import BeautifulSoup，没有报错说明安装成功。
+
+注意事项:
+引入包要用
+
+        import bs4
+
+        from bs4 import BeautifulSoup
+
+这样才可以的,这个是因为版本升级到4.+导致的
+
+不能在
+
+        from BeautifulSoup import BeautifulSoup
+
+这样了
