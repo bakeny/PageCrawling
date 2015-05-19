@@ -7,8 +7,6 @@ __author__ = 'Rain'
 
 import urllib2
 import urllib
-import os
-import bs4
 from bs4 import BeautifulSoup
 
 
@@ -17,8 +15,19 @@ def getAllImageLink(pagesize):
         print "Size of Need downloaded picture page is zero!"
         return
     for i in range(pagesize):
-        html = urllib2.urlopen('http://www.dbmeizi.com/?p='+str(i))
+        #网址请求的异常处理
+        req = urllib2.Request('http://www.dbmeizi.com/?p='+str(i))
+        try:
+            urllib2.urlopen(req)
+        except urllib2.URLError, e:
+            if hasattr(e,"code"):
+                print e.code
+            if hasattr(e,"reason"):
+                print e.reason
+        else:
+            print "OK"
 
+        html = urllib2.urlopen(req);
         print html
         soup = BeautifulSoup(html)
         liResult = soup.findAll('li', attrs={"class": "span3"})
